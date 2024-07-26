@@ -1,10 +1,22 @@
 from django.urls import path
-from .views import PostList, PostDetail, UserList, UserDetail
+from .views import ( 
+    # PostList, 
+    # PostDetail, 
+    # UserList, 
+    # UserDetail, 
+    PostApi,
+    UserApi
+)
+from rest_framework.routers import   DefaultRouter 
+from .serializers import UserSerializer
+
+router = DefaultRouter()
+router.register(r'users', UserApi, basename='users')
 
 
 urlpatterns = [
-    path('', PostList.as_view()),
-    path('<int:pk>/', PostDetail.as_view()),
-    path('users/', UserList.as_view()),
-    path('users/<int:pk>/', UserDetail.as_view()),
+    path('', PostApi.as_view({'get': 'list', 'post': 'create'})),
+    path('<int:pk>/', PostApi.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
+    path('users/', UserApi.as_view({'get': 'list', 'post': 'create'})),
+    path('users/<int:pk>/', UserApi.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
 ]
