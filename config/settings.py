@@ -30,12 +30,15 @@ INSTALLED_APPS = [
     #installed apps
     'rest_framework',
     'rest_framework.authtoken',
-    'allauth',
+    'dj_rest_auth', # authentication
+    'allauth', # registration
     'allauth.account',
     'allauth.socialaccount', 
-    'dj_rest_auth',
     'dj_rest_auth.registration',
+    # cors
     'corsheaders',
+    # swagger
+    'drf_yasg',
 
     # my apps
     'posts',
@@ -95,6 +98,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 4
 }
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': None
+}
+
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
