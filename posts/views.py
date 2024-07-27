@@ -20,7 +20,7 @@ class StandardPagination(PageNumberPagination):
 class PostApi(viewsets.ModelViewSet):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
-    pagination_class = StandardPagination
+    # pagination_class = StandardPagination
 
 
 class UserApi(viewsets.ModelViewSet):
